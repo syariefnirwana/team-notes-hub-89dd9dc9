@@ -229,7 +229,7 @@ export async function signedImageUrl(path: string) {
 }
 
 export async function updateMember(input: { id: string; username?: string; teamRole?: TeamRole }) {
-  const payload: Record<string, unknown> = {};
+  const payload: { username?: string; team_role?: TeamRole } = {};
   if (input.username !== undefined) payload.username = input.username;
   if (input.teamRole !== undefined) payload.team_role = input.teamRole;
   const { error } = await supabase.from("profiles").update(payload).eq("id", input.id);
