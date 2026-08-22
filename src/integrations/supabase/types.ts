@@ -14,16 +14,185 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      note_blocks: {
+        Row: {
+          content: string
+          created_at: string
+          created_by: string
+          id: string
+          image_url: string | null
+          kind: string
+          note_id: string
+          position: number
+          updated_at: string
+          updated_by: string
+        }
+        Insert: {
+          content?: string
+          created_at?: string
+          created_by: string
+          id?: string
+          image_url?: string | null
+          kind?: string
+          note_id: string
+          position?: number
+          updated_at?: string
+          updated_by: string
+        }
+        Update: {
+          content?: string
+          created_at?: string
+          created_by?: string
+          id?: string
+          image_url?: string | null
+          kind?: string
+          note_id?: string
+          position?: number
+          updated_at?: string
+          updated_by?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "note_blocks_note_id_fkey"
+            columns: ["note_id"]
+            isOneToOne: false
+            referencedRelation: "notes"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      note_versions: {
+        Row: {
+          action: string
+          created_at: string
+          editor_id: string
+          id: string
+          note_id: string
+          snapshot: Json | null
+          summary: string | null
+        }
+        Insert: {
+          action: string
+          created_at?: string
+          editor_id: string
+          id?: string
+          note_id: string
+          snapshot?: Json | null
+          summary?: string | null
+        }
+        Update: {
+          action?: string
+          created_at?: string
+          editor_id?: string
+          id?: string
+          note_id?: string
+          snapshot?: Json | null
+          summary?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "note_versions_note_id_fkey"
+            columns: ["note_id"]
+            isOneToOne: false
+            referencedRelation: "notes"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      notes: {
+        Row: {
+          author_id: string
+          created_at: string
+          id: string
+          title: string
+          updated_at: string
+          updated_by: string | null
+        }
+        Insert: {
+          author_id: string
+          created_at?: string
+          id?: string
+          title: string
+          updated_at?: string
+          updated_by?: string | null
+        }
+        Update: {
+          author_id?: string
+          created_at?: string
+          id?: string
+          title?: string
+          updated_at?: string
+          updated_by?: string | null
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          created_at: string
+          email: string | null
+          id: string
+          team_role: Database["public"]["Enums"]["team_role"]
+          updated_at: string
+          username: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          created_at?: string
+          email?: string | null
+          id: string
+          team_role?: Database["public"]["Enums"]["team_role"]
+          updated_at?: string
+          username?: string
+        }
+        Update: {
+          avatar_url?: string | null
+          created_at?: string
+          email?: string | null
+          id?: string
+          team_role?: Database["public"]["Enums"]["team_role"]
+          updated_at?: string
+          username?: string
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "member"
+      team_role: "ketua" | "wakil" | "sekretaris" | "bendahara" | "anggota"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +319,9 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "member"],
+      team_role: ["ketua", "wakil", "sekretaris", "bendahara", "anggota"],
+    },
   },
 } as const
