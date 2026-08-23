@@ -78,7 +78,7 @@ const PERSON_HEX = [
   "#4faa54",
   "#d79a2b",
   "#e0655c",
-  "#c濃".length ? "#c46bbd" : "#c46bbd",
+  "#c46bbd",
   "#8b6ee0",
   "#3fa8c9",
 ];
