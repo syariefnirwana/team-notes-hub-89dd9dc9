@@ -102,6 +102,7 @@ export type Database = {
       notes: {
         Row: {
           author_id: string
+          category: string
           created_at: string
           id: string
           title: string
@@ -110,6 +111,7 @@ export type Database = {
         }
         Insert: {
           author_id: string
+          category?: string
           created_at?: string
           id?: string
           title: string
@@ -118,6 +120,7 @@ export type Database = {
         }
         Update: {
           author_id?: string
+          category?: string
           created_at?: string
           id?: string
           title?: string
@@ -156,6 +159,42 @@ export type Database = {
         }
         Relationships: []
       }
+      timeline_events: {
+        Row: {
+          created_at: string
+          created_by: string
+          description: string | null
+          event_at: string
+          id: string
+          kind: string
+          location: string | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          created_by: string
+          description?: string | null
+          event_at: string
+          id?: string
+          kind?: string
+          location?: string | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          created_by?: string
+          description?: string | null
+          event_at?: string
+          id?: string
+          kind?: string
+          location?: string | null
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           created_at: string
@@ -182,6 +221,7 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      can_manage_agenda: { Args: { _user_id: string }; Returns: boolean }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]
@@ -192,7 +232,13 @@ export type Database = {
     }
     Enums: {
       app_role: "admin" | "member"
-      team_role: "ketua" | "wakil" | "sekretaris" | "bendahara" | "anggota"
+      team_role:
+        | "ketua"
+        | "wakil"
+        | "sekretaris"
+        | "bendahara"
+        | "anggota"
+        | "dosen"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -321,7 +367,14 @@ export const Constants = {
   public: {
     Enums: {
       app_role: ["admin", "member"],
-      team_role: ["ketua", "wakil", "sekretaris", "bendahara", "anggota"],
+      team_role: [
+        "ketua",
+        "wakil",
+        "sekretaris",
+        "bendahara",
+        "anggota",
+        "dosen",
+      ],
     },
   },
 } as const
