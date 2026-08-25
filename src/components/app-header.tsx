@@ -4,6 +4,7 @@ import { NotebookPen, LogOut } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { PersonAvatar } from "@/components/person-mark";
+import { ThemeToggle } from "@/components/theme-toggle";
 import { useMyProfile } from "@/hooks/use-session";
 import { supabase } from "@/integrations/supabase/client";
 import { TEAM_ROLE_LABEL } from "@/lib/people";
@@ -30,7 +31,7 @@ export function AppHeader() {
             <NotebookPen className="size-4" />
           </span>
           <span className="leading-tight">
-            <span className="block text-sm font-semibold">Catatan Studio PWK</span>
+            <span className="block text-sm font-semibold">MyCatatanGwe</span>
             <span className="block text-xs text-muted-foreground">Catatan kelompok bersama</span>
           </span>
         </Link>
@@ -47,6 +48,7 @@ export function AppHeader() {
               </span>
             </div>
           ) : null}
+          <ThemeToggle />
           <Button variant="ghost" size="sm" onClick={handleSignOut}>
             <LogOut className="size-4" />
             <span className="hidden sm:inline">Keluar</span>

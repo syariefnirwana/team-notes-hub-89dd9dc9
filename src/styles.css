@@ -207,4 +207,26 @@
     list-style: decimal;
     padding-left: 1.25rem;
   }
+
+  & img.note-inline-image {
+    display: inline-block;
+    max-width: 100%;
+    height: auto;
+    border-radius: 0.75rem;
+    border: 1px solid var(--border);
+    vertical-align: top;
+  }
+}
+
+@utility note-editable {
+  & img.note-inline-image {
+    cursor: grab;
+    touch-action: none;
+    user-select: none;
+    box-shadow: 0 0 0 2px color-mix(in oklab, var(--primary) 35%, transparent);
+  }
+
+  & img.note-inline-image:active {
+    cursor: grabbing;
+  }
 }

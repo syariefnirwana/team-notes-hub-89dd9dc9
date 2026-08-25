@@ -10,13 +10,13 @@ import { useSession } from "@/hooks/use-session";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Catatan Studio PWK — Catatan Kelompok Bersama" },
+      { title: "MyCatatanGwe — Catatan Kelompok Studio PWK" },
       {
         name: "description",
         content:
           "Catatan cloud untuk kelompok studio Perencanaan Wilayah dan Kota: tulis, edit bersama, dan lihat siapa yang menulis serta mengubah setiap bagian.",
       },
-      { property: "og:title", content: "Catatan Studio PWK — Catatan Kelompok Bersama" },
+      { property: "og:title", content: "MyCatatanGwe — Catatan Kelompok Studio PWK" },
       {
         property: "og:description",
         content:
@@ -79,7 +79,7 @@ function Landing() {
     <main className="mx-auto flex min-h-screen max-w-5xl flex-col justify-center gap-10 px-4 py-16">
       <div className="max-w-2xl">
         <span className="inline-flex items-center gap-2 rounded-full bg-secondary px-3 py-1 text-xs font-medium text-secondary-foreground">
-          <NotebookPen className="size-3.5" /> Kelompok Studio PWK
+          <NotebookPen className="size-3.5" /> MyCatatanGwe · Kelompok Studio PWK
         </span>
         <h1 className="mt-5 text-4xl leading-tight sm:text-5xl">
           Catatan kelompok yang jelas siapa penulis dan penanggung jawabnya.
