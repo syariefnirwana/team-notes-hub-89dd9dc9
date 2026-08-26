@@ -19,6 +19,7 @@ import {
 import { toast } from "sonner";
 
 import { AppHeader } from "@/components/app-header";
+import { NoteContent } from "@/components/note-content";
 import { NoteImage } from "@/components/note-image";
 import { PersonAvatar, PersonMark } from "@/components/person-mark";
 import { CursorLayer, PresenceBar } from "@/components/presence-bar";
@@ -401,6 +402,9 @@ function NoteDetail() {
                 autoFocus
                 submitLabel="Tambah bagian"
                 saving={addText.isPending}
+                onUploadImage={(file) =>
+                  uploadNoteImage({ file, userId: user!.id, noteId })
+                }
                 onSave={(html) => addText.mutate(html)}
                 onCancel={() => setAddingText(false)}
               />
@@ -622,6 +626,7 @@ function BlockCard({
           value={block.content}
           autoFocus
           saving={save.isPending}
+          onUploadImage={(file) => uploadNoteImage({ file, userId: user!.id, noteId })}
           onSave={(html) => save.mutate(html)}
           onCancel={() => setEditing(false)}
         />
@@ -634,7 +639,7 @@ function BlockCard({
           onChange={(next) => save.mutate(next)}
         />
       ) : (
-        <div className="note-prose text-sm" dangerouslySetInnerHTML={{ __html: block.content }} />
+        <NoteContent html={block.content} className="text-sm" />
       )}
 
       <footer className="mt-4 flex flex-wrap items-center justify-between gap-2 border-t border-border pt-3 text-xs text-muted-foreground">
