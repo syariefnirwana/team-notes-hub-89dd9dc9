@@ -229,13 +229,15 @@ function AgendaSection() {
       if (!user) throw new Error("Belum masuk");
       if (!title.trim()) throw new Error("Judul agenda tidak boleh kosong");
       if (!eventAt) throw new Error("Tanggal & waktu agenda wajib diisi");
+      const desc = description.trim();
+      const loc = location.trim();
       await createTimelineEvent({
         title: title.trim(),
-        description: description.trim() || undefined,
         kind,
         eventAt,
-        location: location.trim() || undefined,
         userId: user.id,
+        ...(desc ? { description: desc } : {}),
+        ...(loc ? { location: loc } : {}),
       });
     },
     onSuccess: () => {
