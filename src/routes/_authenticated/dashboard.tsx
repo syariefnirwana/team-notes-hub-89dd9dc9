@@ -343,8 +343,13 @@ function Dashboard() {
           </div>
 
           <div className="surface-paper p-5">
-            <h2 className="flex items-center gap-2 text-base">
-              <Clock className="size-4 text-primary" /> Agenda mendatang
+            <h2 className="flex items-center justify-between gap-2 text-base">
+              <span className="flex items-center gap-2">
+                <Clock className="size-4 text-primary" /> Agenda mendatang
+              </span>
+              <Link to="/timeline" className="text-xs font-medium text-primary hover:underline">
+                Lihat timeline
+              </Link>
             </h2>
             <ul className="mt-4 space-y-3">
               {upcoming.length === 0 ? (
