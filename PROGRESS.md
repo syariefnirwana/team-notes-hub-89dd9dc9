@@ -87,6 +87,9 @@ Skema database (schema `public`, semua tabel RLS aktif + GRANT):
 - `/settings` tersembunyi: hanya admin (kelola nama tampilan, peran, **hapus anggota**)
   dan pengurus (kelola **timeline/agenda**: tambah & hapus).
 - Layout responsif (mobile → desktop) memakai grid/flex Tailwind.
+- Halaman timeline penuh `/timeline`: agenda mendatang + riwayat agenda, dikelompokkan
+  per bulan, dengan tombol "Kelola agenda" (ke `/settings`) hanya untuk admin/pengurus.
+  Dashboard punya tautan "Lihat timeline" di kartu agenda.
 
 ---
 
